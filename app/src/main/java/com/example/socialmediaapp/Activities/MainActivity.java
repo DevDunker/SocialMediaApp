@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.socialmediaapp.Adapters.PostAdapter;
 import com.example.socialmediaapp.Adapters.StoryAdapter;
+import com.example.socialmediaapp.Models.PostItem;
 import com.example.socialmediaapp.Models.StoryItem;
 import com.example.socialmediaapp.R;
 
@@ -22,11 +24,22 @@ public class MainActivity extends AppCompatActivity {
     EditText et_searchBar;
 
     RecyclerView storyRecyclerView;
-    StoryAdapter storyAdapter;
+    RecyclerView postRecyclerView;
 
+    StoryAdapter storyAdapter;
+    PostAdapter postAdapter;
+
+    // story recycler view
     int[] img_story;
     boolean[] isStory;
 
+    // post recycler view
+    int[] img_post;
+    int[] img_display;
+    String[] txt_name;
+    String[] txt_time;
+
+    private List<PostItem> postListItems = new ArrayList<>();
     private List<StoryItem> storyListItems = new ArrayList<>();
 
 
@@ -48,13 +61,24 @@ public class MainActivity extends AppCompatActivity {
         tv_greeting.setTypeface(myFont1);
 
 
-        intializaStory();
+        intializeStory();
+        initializePosts();
+
         getStory();
+        getPosts();
 
     }
 
 
-    private void intializaStory(){
+    private void initializePosts(){
+
+        postRecyclerView = findViewById(R.id.rv_post);
+        postRecyclerView.setHasFixedSize(true);
+        postRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+    }
+
+    private void intializeStory(){
         storyRecyclerView = findViewById(R.id.rv_story);
         storyRecyclerView.setHasFixedSize(true);
         storyRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
@@ -79,5 +103,32 @@ public class MainActivity extends AppCompatActivity {
         storyRecyclerView.setAdapter(storyAdapter);
 
     }
+
+    private void getPosts(){
+
+        img_post = new int[]{R.drawable.post_matt,R.drawable.post_mathew,R.drawable.post_jennifer,R.drawable.post_harry,R.drawable.post_taylor,R.drawable.post_matt};
+        img_display = new int[]{R.drawable.matt,R.drawable.mathew,R.drawable.jennifer,R.drawable.harry,R.drawable.taylor,R.drawable.matt};
+        txt_name = new String[]{"Matt LeBlanc","Mathew Perry", "Jennifer Aniston","Harry Styles","Taylor Swift","Matt LeBlanc"};
+        txt_time= new String[]{"13m ago", "20m ago", "45m ago",  "1h ago", "2h ago", "2h ago"};
+
+        for(int i=0;i<img_post.length;i++){
+            PostItem postItem= new PostItem(img_post[i],
+                    img_display[i],
+                    txt_name[i],
+                    txt_time[i]);
+
+            postListItems.add(postItem);
+        }
+
+        postAdapter = new PostAdapter(postListItems,this);
+        postRecyclerView.setAdapter(postAdapter);
+
+
+
+
+    }
+
+
+
 
 }

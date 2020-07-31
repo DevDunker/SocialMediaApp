@@ -68,7 +68,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
 
-            iv_story = (CircleImageView) itemView.findViewById(R.id.iv_story);
+            iv_story = (CircleImageView) itemView.findViewById(R.id.iv_card_profile);
 
         }
     }
