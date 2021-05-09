@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.socialmediaapp.Adapters.PostAdapter;
@@ -18,10 +21,13 @@ import com.example.socialmediaapp.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class MainActivity extends AppCompatActivity {
 
     TextView tv_uname, tv_greeting;
     EditText et_searchBar;
+    CircleImageView cv_homePic;
 
     RecyclerView storyRecyclerView;
     RecyclerView postRecyclerView;
@@ -52,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
         tv_uname = (TextView) findViewById(R.id.textView_username);
         tv_greeting = (TextView) findViewById(R.id.textView_greeting);
         et_searchBar = (EditText) findViewById(R.id.editText_searchBar);
+        cv_homePic = (CircleImageView) findViewById(R.id.home_profile_image);
+
 
         Typeface myFont = Typeface.createFromAsset(getAssets(),"font/as_bold.ttf");
         Typeface myFont1 = Typeface.createFromAsset(getAssets(),"font/Roboto-Bold.ttf");
@@ -59,6 +67,15 @@ public class MainActivity extends AppCompatActivity {
         et_searchBar.setTypeface(myFont);
         tv_uname.setTypeface(myFont);
         tv_greeting.setTypeface(myFont1);
+
+        cv_homePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent profileIntent = new Intent(MainActivity.this, Profile.class);
+                startActivity(profileIntent);
+            }
+        });
+
 
 
         intializeStory();

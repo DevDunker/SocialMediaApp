@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.makeramen.roundedimageview.RoundedImageView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/riv_profile_PostPic"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scaleType="centerCrop"
+    android:layout_marginTop="25dp"
+    android:layout_marginStart="25dp"
+    android:adjustViewBounds="true"
+    app:riv_corner_radius="10dp"
+    android:layout_marginLeft="0dp">
+
+</com.makeramen.roundedimageview.RoundedImageView>
